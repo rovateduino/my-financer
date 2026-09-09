@@ -1,0 +1,80 @@
+{
+  "name": "my-financer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && tsx server.ts",
+    "build": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "start": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && node dist/server.cjs",
+    "electron:dev": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && npm run build && electron .",
+    "electron:dev:admin": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && npm run build && electron electron/admin-main.cjs",
+    "electron:build": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && npm run build && electron-builder --win",
+    "electron:build:admin": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && npm run build && electron-builder --win --config electron-builder.admin.json",
+    "clean": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && rm -rf dist financer_db.json release",
+    "lint": "set \"PATH=E:\\Arquivo de Programas\\Node;%PATH%\" && tsc --noEmit"
+  },
+  "build": {
+    "appId": "com.myfinancer.app",
+    "productName": "My Financer",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "build/**/*"
+    ],
+    "asar": false,
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icons/win/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "installerIcon": "build/icons/win/icon.ico",
+      "uninstallerIcon": "build/icons/win/icon.ico",
+      "installerHeaderIcon": "build/icons/win/icon.ico"
+    }
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "multer": "^2.2.0",
+    "pdf-parse": "^2.4.5",
+    "sql.js": "^1.14.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "electron": "^41.7.1",
+    "electron-builder": "^26.15.3",
+    "electron-icon-builder": "^2.0.1",
+    "esbuild": "^0.25.0",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "png-to-ico": "^3.0.2",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.9.1",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  }
+}
