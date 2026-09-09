@@ -1,0 +1,16 @@
+node_modules/
+dist/
+build/
+release/
+release_new/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+financer_db.json
+backups/*.sqlite
+coverage/
+*.log
+tmp-*
+temp-*
